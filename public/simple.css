@@ -1,0 +1,66 @@
+body {
+	background-color: #000;
+}
+#container {
+	margin-left: 50px;
+	margin-top: 10px;
+}
+.gamePad {
+	width: 640px;
+	height: 640px;
+	margin: auto;
+}
+
+.square {
+	width: 300px;
+	height: 300px;
+	float: left;
+	opacity: 0.5;
+	margin: 10px;
+}
+
+#red {
+	background-color: red;
+	border-top-left-radius: 300px;
+}
+
+#blue {
+	background-color: blue;
+	border-top-right-radius: 300px;
+}
+
+#yellow {
+	background-color: yellow;
+	border-bottom-left-radius: 300px;
+}
+
+#green {
+	background-color: green;
+	border-bottom-right-radius: 300px;
+}
+.active {
+	opacity: 1.0;
+}
+#startButton {
+	position: absolute;
+	top: 38px;
+	right: 37px;
+	text-align: center;
+	border-radius: 100px;
+	height: 100px;
+	width: 100px;
+	background-color: #000;
+	color: #fff;
+	font-size: 18px;
+	border: 5px solid white
+}
+.circle {
+    position: absolute;
+    top: 248px;
+    left: 625px;
+    width: 175px;
+    height: 175px;
+    background: #000;
+    border-radius: 125px;
+    z-index: 10;
+  }
