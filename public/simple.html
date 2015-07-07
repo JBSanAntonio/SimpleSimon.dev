@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+ <html>
+    <head>
+      <title>Simple Simon Game</title>
+<!--       <link rel="stylesheet" type="text/css" href="/bootstrap.css">
+ -->      <link rel="stylesheet" type="text/css" href="/simple.css">
+    </head>
+  
+ <body>
+<div id="container">  
+<div class = "back">
+    <div class = "gamePad">
+          <div class="pad square" id = "red"></div>
+          <div class="pad square" id = "blue"></div>
+          <div class="pad square" id = "yellow"></div>
+          <div class="pad square" id = "green"></div>
+      </div>
+       <div class = "circle">
+          
+          <button id = "startButton"><strong>START SIMON</strong></button>
+        
+       </div>
+</div>
+</div>
+  <!-- jQuery file load? -->
+  <script src="/js/jQuery.js"></script>
+
+  <script type="text/javascript">
+  
+(function() {
+  "use strict";
+
+  var simonSequence = [];
+  var playerIndex = 0;
+
+  /*square clicked by player animates bc defined it as this square - PLAYER SEQUENCE*/
+    $('.square').click(function(e) {
+      var squareClickedByPlayer = $(this).attr('id');
+      // console.log(squareClickedByPlayer);
+      animateSquare(squareClickedByPlayer);
+      // console.log($(".square"));
+      if (squareClickedByPlayer == simonSequence[playerIndex]) {
+          playerIndex++;
+          if (playerIndex == simonSequence.length) {
+          computerTurn();
+          playerIndex = 0;
+          console.log(squareClickedByPlayer);
+          }
+      } else {
+        alert("You lose!");
+      }
+    });
+
+    function getRandomSquare () {
+      var squares = $('.square');
+      var rand = Math.floor(Math.random() * 4);
+      var buttonToAnimate = squares[rand];
+      var id = buttonToAnimate.getAttribute('id');
+      simonSequence.push(id);
+      console.log(simonSequence)
+    };
+
+    /*function for animating/lighting up a square - animateSquare (ID=square) */
+    function animateSquare (id) {
+      $('#' + id).addClass('active');
+      setTimeout(function( ) {
+        $('#' + id).removeClass('active');
+      }, 500);
+    };
+
+  function playSimonSequence() {
+    var i = 0;
+    var intervalId = setInterval(function() {
+        if(i >= simonSequence.length) {
+          clearInterval(intervalId);
+        }
+        animateSquare(simonSequence[i]);
+        i += 1;
+    }, 1000);
+  }
+
+  function computerTurn () {
+    getRandomSquare();
+    playSimonSequence();
+  }
+
+  $('#startButton').click(function (e) {
+      simonSequence = [];
+      computerTurn();
+  });
+
+})();
+
+</script>
+
+ </body>
+ </html>
+
